@@ -1,5 +1,7 @@
 # redrain
 红包雨的javascript插件
+# 引用至： https://github.com/ranckprogram/redrain
+
 
 html 部分
 <pre>
