@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="">
+  <style type="text/css">
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #box {
+      position: relative;
+      overflow: hidden;
+      /* max-width: 750px; */
+      /* height: 500px; */
+      width: 100%;
+      height: 100%;
+      /* border: 1px solid #ddd; */
+      /* border-radius: 4px; */
+      margin: 0 auto;
+    }
+
+    /* 红包的样式*/
+    .redpack {
+      position: absolute;
+      display: block;
+      /* width: 30px; */
+      /* height: 44px; */
+      width: 60px;
+      height: 88px;
+      background: #f00;
+    }
+
+    /*点击后的红包*/
+
+    .redpacked {
+      background: #f80;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+  </div>
+</body>
+<script type="text/javascript" src="js/redrain.js"></script>
+<script type="text/javascript">
+  window.onload = function () {
+
+    var el = document.getElementById("box");
+    var rain = new redPack({
+      el: el, // 容器
+      //chance: 0.5, // 几率,暂时不要
+      speed: 10, // 速度，越小越快
+      density: 300, //  红包密度，越小越多
+      // callback: function () {
+      callback: function (item) {
+        console.log("callback", item);
+        // 动画改造
+        clearInterval(item.timer); 
+        setTimeout(()=> {
+          el.removeChild(item);
+        }, 500);
+      } // 点击红包的回调
+    });
+
+    // 开始动画
+    rain.start();
+    setTimeout(()=> { // 动画10s后结束
+      rain.stop();
+    }, 30000);
+
+
+    document.onclick = function () {
+      //停止
+      // rain.stop();
+    }
+  };
+</script>
+
+</html>
